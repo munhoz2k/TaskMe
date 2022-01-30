@@ -11,14 +11,16 @@ datasource db {
 }
 
 model Task {
-  id Int @default(autoincrement()) @id
-  title String @db.VarChar(50)
-  //content String
+  id          Int     @default(autoincrement()) @id
+  title       String  @db.VarChar(50)
   isCompleted Boolean @default(false)
 }
 
 model User {
-  id Int @default(autoincrement()) @id
-  name String
-  email String @unique
+  id         Int     @default(autoincrement()) @id
+  name       String
+  email      String  @unique
+  password   String
+  bio        String?
+  photo_path String?
 }
