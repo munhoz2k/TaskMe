@@ -1,8 +1,11 @@
 import { Request, Response, Router } from 'express'
-import { controller as taskController } from '../controllers/taskController'
+
+import createTask from '../controllers/createTask'
+
 
 const router = Router()
 
-router.post('/', taskController.create)
+router.get('/', )
+router.post('/', createTask)
 
 export { router }

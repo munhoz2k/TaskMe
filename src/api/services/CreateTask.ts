@@ -8,9 +8,9 @@ interface Request {
 }
 
 
-class CreateTask {
+export class CreateTask {
 
-    async execute (data: Request) {
+    static async execute (data: Request) {
 
         // Create task on Database
         const newTask = await db.task.create({ data: data })
