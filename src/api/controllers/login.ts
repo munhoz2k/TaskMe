@@ -1,15 +1,15 @@
 import { Request, Response, NextFunction } from "express"
-import verifyUser from "../auth/verifyUser"
+import AuthenticateUser from "../services/AuthenticateUser"
 
-export default (req: Request, res: Response, next: NextFunction) => {
+export default async (req: Request, res: Response, next: NextFunction) => {
 
     const { email, password } = req.body
     try {
-        const token = verifyUser(email, password)
+        const { user, token } = await AuthenticateUser(email, password)
 
-        res.set('Authorization', password)
+        res.status(200).json({ user, token })
     } catch (error) {
-        
+        next(error)
     }
 
 }

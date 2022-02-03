@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express"
-import { FindUser } from "../services/FindUser";
+import { FindTask } from "../services/FindTask";
 
-export const userFinder = {
+export const taskFinder = {
 
     all: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const users = await FindUser.findAll()
+            const tasks = await FindTask.all()
     
-            res.status(200).json(users)
+            res.status(200).json(tasks)
         } catch (error) {
             next(error)
         }
@@ -16,20 +16,9 @@ export const userFinder = {
     byId: async (req: Request, res: Response, next: NextFunction) => {
         const { id } = req.params
         try {
-            const users = await FindUser.findById(id)
+            const task = await FindTask.byId(id)
     
-            res.status(200).json(users)
-        } catch (error) {
-            next(error)
-        }
-    },
-
-    byEmail: async (req: Request, res: Response, next: NextFunction) => {
-        const { email } = req.body
-        try {
-            const users = await FindUser.findById(email)
-    
-            res.status(200).json(users)
+            res.status(200).json(task)
         } catch (error) {
             next(error)
         }

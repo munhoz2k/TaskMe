@@ -11,10 +11,12 @@ import { userFinder } from "../controllers/userFinder";
 const router = Router()
 
 router.get('/', userFinder.all)
+router.get('/:id', userFinder.byId)
+router.get('/:email', userFinder.byEmail)
+
 router.post('/', createUser)
-
 router.post('/login', login)
-
 router.post('/new-avatar', multer.single('file'), uploadAvatar)
+
 
 export { router }
