@@ -1,7 +1,11 @@
 //import { NextFunction, Request, Response } from "express";
 import { app } from "./app";
-import { router } from './routes'
+import { router } from "./routes";
+import cors from "cors";
 
-app.use(router)
+const PORT = process.env.PORT || 3000;
 
-app.listen((3000), () => console.log('Server Up'))
+app.use(cors());
+app.use(router);
+
+app.listen(PORT, () => console.log("Server Up"));
