@@ -2,10 +2,8 @@ import { PrismaClient, User } from "@prisma/client"
 
 const db = new PrismaClient()
 
-export class FindUser{
-
+export class FindUser {
     static async findById(id: string): Promise<User> {
-        
         // Find user by ID
         const user = await db.user.findFirst({ where: { id: Number(id) } })
 
@@ -13,19 +11,16 @@ export class FindUser{
     }
 
     static async findByEmail(email: string): Promise<User> {
-        
         // Find user by ID
         const user = await db.user.findFirst({ where: { email: email } })
-        
+
         return user
     }
 
     static async findAll(): Promise<Object> {
-        
         // Find user by ID
         const user = await db.user.findMany()
-        
+
         return user
     }
-
 }
