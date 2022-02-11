@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express"
-import ChangeAvatar from "../services/ChangeAvatar"
+import CreateGroup from "../services/CreateGroup"
 
 export default async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.user
-    const filename = req.file.filename
+    const { groupName } = req.params
 
     try {
-        await ChangeAvatar(id, filename)
+        const newGroup = await CreateGroup(id, groupName)
 
-        res.status(200).send("Avatar uploaded")
+        res.status(201).json(newGroup)
     } catch (error) {
         next(error)
     }

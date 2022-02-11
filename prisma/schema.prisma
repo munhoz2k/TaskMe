@@ -11,29 +11,28 @@ datasource db {
 }
 
 model Task {
-  id          Int     @id @default(autoincrement())
+  id          String  @id
   title       String  @db.VarChar(50)
   isCompleted Boolean @default(false)
-  group       Group?  @relation(fields: [groupId], references: [id])
-  user        User    @relation(fields: [userId], references: [id])
-  groupId     Int?
-  userId      Int
+  group       Group   @relation(fields: [groupId], references: [id])
+  groupId     String
 }
 
 model User {
-  id             Int     @id @default(autoincrement())
+  id             String  @id
   name           String
   email          String  @unique
   password       String?
+  photo_path     String
+  registerMethod String  @default("email")
   bio            String?
-  photo_path     String?
   groups         Group[]
-  tasks          Task[]
-  registerMethod String
 }
 
 model Group {
-  id    Int    @id @default(autoincrement())
-  users User[]
-  task  Task[]
+  id     String @id
+  name   String @default("My tasks")
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  task   Task[]
 }

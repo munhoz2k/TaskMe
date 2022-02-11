@@ -1,17 +1,14 @@
+import { Prisma } from "@prisma/client"
 import { NextFunction, Request, Response } from "express"
-import { CreateUser } from "../services/CreateUser"
+import CreateUser from "../services/CreateUser"
 
 export default async (req: Request, res: Response, next: NextFunction) => {
-    const { name, email, password } = req.body
+    const data: Prisma.UserCreateInput = req.body
 
     try {
-        const { user, token } = await CreateUser.execute({
-            name,
-            email,
-            password,
-        })
+        const { newUser, newGroup, token } = await CreateUser(data)
 
-        res.status(201).json({ user, token })
+        res.status(201).json({ newUser, newGroup, token })
     } catch (error) {
         next(error)
     }

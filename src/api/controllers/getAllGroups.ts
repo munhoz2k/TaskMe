@@ -1,14 +1,13 @@
 import { NextFunction, Request, Response } from "express"
-import ChangeAvatar from "../services/ChangeAvatar"
+import GetAllGroups from "../services/GetAllGroups"
 
 export default async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.user
-    const filename = req.file.filename
 
     try {
-        await ChangeAvatar(id, filename)
+        const uncheckedTask = await GetAllGroups(id)
 
-        res.status(200).send("Avatar uploaded")
+        res.status(201).json(uncheckedTask)
     } catch (error) {
         next(error)
     }

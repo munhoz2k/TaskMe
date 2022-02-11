@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from "express"
-import { CreateTask } from "../services/CreateTask"
+import CompleteTask from "../services/CompleteTask"
 
 export default async (req: Request, res: Response, next: NextFunction) => {
-    const data = req.body
-    try {
-        const newTask = await CreateTask.execute(data)
+    const taskId = req.params.taskId
 
-        res.status(201).json(newTask)
+    try {
+        const completedTask = await CompleteTask(taskId)
+
+        res.status(200).json(completedTask)
     } catch (error) {
         next(error)
     }

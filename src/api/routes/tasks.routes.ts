@@ -1,15 +1,16 @@
-import { Request, Response, Router } from 'express'
+import { Router } from "express"
 
-import createTask from '../controllers/createTask'
-
-import { taskFinder } from '../controllers/taskFinder'
-
+import createTaskOnGroup from "../controllers/createTaskOnGroup"
+import completeTask from "../controllers/completeTask"
+import removeTask from "../controllers/removeTask"
+import ensureAuthenticated from "../middleware/ensureAuthenticated"
+import uncheckTask from "../controllers/uncheckTask"
 
 const router = Router()
 
-router.get('/', taskFinder.all)
-router.post('/', createTask)
-
-router.get('/:id', taskFinder.byId)
+router.get("/check/:taskId", ensureAuthenticated, completeTask)
+router.get("/uncheck/:taskId", ensureAuthenticated, uncheckTask)
+router.post("/:groupName", ensureAuthenticated, createTaskOnGroup)
+router.delete("/:taskId", ensureAuthenticated, removeTask)
 
 export { router }

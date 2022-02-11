@@ -1,20 +1,21 @@
 import multer from "multer"
 import path from "path"
-import { uuid } from 'uuidv4'
 
-const multerUpload = multer({
-    storage: multer.diskStorage({
-
-        destination: path.join(__dirname, '..', '..', 'tmp', 'uploads'),
-
-        filename(req, file, callback) {
-            const fileName = `${uuid()}-${file.originalname}`
-
-            return callback(null, fileName)
-        },
-
-    }),
-
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const dest = path.join(__dirname, "..", "..", "tmp", "uploads")
+        cb(null, dest)
+    },
+    filename: async function (req, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname)
+    },
 })
 
-export { multerUpload }
+const upload = multer({
+    storage: storage,
+    limits: {
+        fieldNameSize: 100,
+    },
+})
+
+export { upload }

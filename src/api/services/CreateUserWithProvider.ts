@@ -1,21 +1,12 @@
 import { PrismaClient, User } from "@prisma/client"
-import axios from "axios"
+import AppError from "../errors/AppError"
 import { sign } from "jsonwebtoken"
+import axios from "axios"
 
 const db = new PrismaClient()
 
-interface Request {
-    id_token: string
-    registerMethod: string
-}
-
-interface Response {
-    user: User
-    token: string
-}
-
 export class CreateUserWithProvider {
-    static async execute({ id_token, registerMethod }: Request) {
+    static async execute(id_token: string, registerMethod: string) {
         let user
 
         if (registerMethod === "google") {
@@ -29,7 +20,10 @@ export class CreateUserWithProvider {
             )
             return user
         } else {
-            throw new Error("Erro")
+            throw new AppError(
+                "Não foi possivel identificar o método de registro",
+                500
+            )
         }
     }
 }
