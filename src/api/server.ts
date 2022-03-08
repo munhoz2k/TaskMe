@@ -22,4 +22,4 @@ app.use((error: AppError, req: Request, res: Response, next: NextFunction) => {
     }
 })
 
-app.listen(PORT, () => console.log("Server Up"))
+app.listen(PORT, () => console.log(`Server Up on: http://localhost:${PORT}/`))
