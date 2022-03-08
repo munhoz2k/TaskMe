@@ -4,7 +4,7 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "nodemon --watch 'src/' --exec 'ts-node --files src/api/server.ts' -e ts",
+        "start": "ts-node --files src/api/server.ts",
         "dev": "nodemon --watch 'src/' --exec 'ts-node-dev --inspect --trace-warnings --files --transpile-only src/api/server.ts' -e ts"
     },
     "dependencies": {
