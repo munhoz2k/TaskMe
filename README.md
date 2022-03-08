@@ -20,6 +20,7 @@
   * Suba o docker postgres com "docker-compose up"
 > Caso prefira, configure a string de conexão com o seu banco no .env
 > Lembre também que se você mudar o banco de dados, será necessario indicar no arquivo prisma.chema dentro da pasta prisma na opção "provider"
+  * Roded "yarn prisma migrate deploy" ou "npx prisma migrate depoy" para aplicar as mudanças no banco
   * Rode "yarn start" ou "npm start" para subir o servidor!
  
  
