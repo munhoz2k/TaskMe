@@ -2,7 +2,6 @@ node_modules
 pgdata
 # Keep environment variables out of version control
 .env
-docker-compose.yml
 
 tmp/uploads/*
 
