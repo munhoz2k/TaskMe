@@ -1,5 +1,5 @@
 # Back-end TaskMe
-  Servidor de Tarefas ("Tasks") ✔️✔️
+  Servidor de Tarefas ("Tasks") ✔️
 
 # Oque é?
   - É um back-end de um projeto web de tasks, na qual o usuário consegue criar tasks para seu dia a dia,
