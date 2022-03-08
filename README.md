@@ -13,6 +13,7 @@
   - Multer
   - Bcrypt
   - Docker PostgreSQL
+  - Documentação com Swagger
 
 # Como utilizar?
   * Clone o repositório para sua máquina
